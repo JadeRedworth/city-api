@@ -30,9 +30,24 @@ build:
         code: |
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
 
+    - script:
+        name: ls-wercker-root
+        code: |
+            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
+        
+    - script:
+        name: copy-output
+        code: |
+            mv hello-world $WERCKER_OUTPUT_DIR
+        
+    - script:
+        name: ls-wercker-output-dir
+        code: |
+            echo WERCKER_OUTPUT_DIR=$WERCKER_OUTPUT_DIR; ls -ls $WERCKER_OUTPUT_DIR
+
 push-docker:
   steps:
-    - internal/docker-scratch-push:
+    - internal/docker-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
         tag: scratch-latest
@@ -43,7 +58,7 @@ push-docker:
 
 push-docker-scratch:
   steps:
-    - internal/docker-push:
+    - internal/docker-scratch-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
         tag: latest
