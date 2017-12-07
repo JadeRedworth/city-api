@@ -64,3 +64,16 @@ push-docker-scratch:
         repository: rikgibson/city-db
         registry: https://registry.hub.docker.com/v2
 
+build-image:
+  steps:
+    - script:
+      code: |
+        mkdir -p /app
+        mv build/libs/*.jar /app
+
+    - internal/docker-push:
+        repository: wcr.io/rikgibson/city-api
+        tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT,$WERCKER_GIT_COMMIT,latest
+        cmd: java -jar /app/demo-1.0.jar
+        ports: "8080"
+        working-dir: /build
