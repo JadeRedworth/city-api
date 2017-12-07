@@ -1,6 +1,6 @@
 # docker box definition
 box:
-  id: oracle/openjdk:8
+  id: openjdk/9-jdk
   ports:
     - "8080"
 
@@ -31,12 +31,12 @@ build:
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
 
     - internal/docker-scratch-push:
-        username: rikgibson
-        password: qJJ-7WU-7tu-Su9
+        username: $DOCKER_HUB_USERNAME
+        password: $DOCKER_HUB_PASSWORD
         tag: latest
         ports: "8080"
         cmd: ./gradlew bootRun
-        repository: rikgibson/getting-started-java
+        repository: rikgibson/city-db
         registry: https://registry.hub.docker.com
 
 push-docker-hub:
@@ -47,5 +47,5 @@ push-docker-hub:
         tag: latest
         ports: "8080"
         cmd: gradlew bootRun
-        repository: rikgibson/getting-started-java
+        repository: rikgibson/city-db
         registry: https://registry.hub.docker.com

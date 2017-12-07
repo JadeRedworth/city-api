@@ -1,34 +1,6 @@
-# getting-started-java
+# city-db
 
-A sample application in Java for wercker.
-
-This application uses the `openjdk` container obtained from the [Docker Hub](https://registry.hub.docker.com/_/openjdk/)
-
-## Setup & Build
-Clone this repo and cd into the directory:
-
-```
-git clone https://github.com/wercker/getting-started-java.git
-cd getting-started-java
-```
-
-then build using:
-
-```
-wercker build
-```
-
-## Run
-To run the application, simply execute:
-
-```
-wercker dev --expose-ports
-```
-
-Now point your browser at `http://localhost:8080` to see:
-```
-Hello World!
-```
+Originally based on the [getting-started-java](https://github.com/wercker/getting-started-java) sample for [Wercker](http://www.wercker.com), this project expands upon the original by expanding it into a simple 3-tier web app - web, api & db - each running in separate containers and ultimately deployed to Oracle Container Engine.w
 
 ---
 Sign up for wercker: http://www.wercker.com
