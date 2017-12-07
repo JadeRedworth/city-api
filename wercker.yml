@@ -37,7 +37,7 @@ build:
         ports: "8080"
         cmd: ./gradlew bootRun
         repository: rikgibson/city-db
-        registry: https://registry.hub.docker.com
+        registry: https://registry.hub.docker.com/v2
 
 push-docker-hub:
   steps:
@@ -48,4 +48,4 @@ push-docker-hub:
         ports: "8080"
         cmd: gradlew bootRun
         repository: rikgibson/city-db
-        registry: https://registry.hub.docker.com
+        registry: https://registry.hub.docker.com/v2
