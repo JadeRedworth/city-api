@@ -1,6 +1,6 @@
 # docker box definition
 box:
-  id: openjdk/9-jdk
+  id: openjdk:8-jdk
   ports:
     - "8080"
 
@@ -33,7 +33,7 @@ build:
     - internal/docker-scratch-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
-        tag: latest
+        tag: scratch-latest
         ports: "8080"
         cmd: ./gradlew bootRun
         repository: rikgibson/city-db
