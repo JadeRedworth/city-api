@@ -12,14 +12,6 @@ dev:
       code: |
         ./gradlew bootRun
 
-    ### REPLACE the above script step with this internal/watch step to enable 
-    ### dynamic rebuilding/reloading of the container in response to file changes.
-    #
-    # - internal/watch:
-    #     code: |
-    #       ./gradlew bootRun
-    #     reload: true
-
 # Build definition
 build:
   # The steps that will be executed on build
@@ -47,10 +39,15 @@ build:
 
 push-docker:
   steps:
+    - script:
+        name: ls-wercker-root
+        code: |
+            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
+
     - internal/docker-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
-        tag: scratch-latest
+        tag: latest
         ports: "8080"
         cmd: ./gradlew bootRun
         repository: rikgibson/city-db
@@ -58,10 +55,15 @@ push-docker:
 
 push-docker-scratch:
   steps:
+    - script:
+        name: ls-wercker-root
+        code: |
+            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
+
     - internal/docker-scratch-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
-        tag: latest
+        tag: scratch-latest
         ports: "8080"
         cmd: gradlew bootRun
         repository: rikgibson/city-db
