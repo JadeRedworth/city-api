@@ -30,6 +30,8 @@ build:
         code: |
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
 
+push-docker:
+  steps:
     - internal/docker-scratch-push:
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
@@ -39,7 +41,7 @@ build:
         repository: rikgibson/city-db
         registry: https://registry.hub.docker.com/v2
 
-push-docker-hub:
+push-docker-scratch:
   steps:
     - internal/docker-push:
         username: $DOCKER_HUB_USERNAME
