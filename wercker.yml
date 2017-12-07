@@ -1,4 +1,4 @@
-# docker box definition
+8# docker box definition
 box:
   id: openjdk:8-jdk
   ports:
@@ -45,8 +45,8 @@ push-docker:
             echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
 
     - internal/docker-push:
-        username: $DOCKER_HUB_USERNAME
-        password: $DOCKER_HUB_PASSWORD
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
         tag: latest
         ports: "8080"
         cmd: ./gradlew bootRun
@@ -61,10 +61,11 @@ push-docker-scratch:
             echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
 
     - internal/docker-scratch-push:
-        username: $DOCKER_HUB_USERNAME
-        password: $DOCKER_HUB_PASSWORD
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
         tag: scratch-latest
         ports: "8080"
         cmd: gradlew bootRun
         repository: rikgibson/city-db
         registry: https://registry.hub.docker.com/v2
+
