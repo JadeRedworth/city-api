@@ -1,5 +1,5 @@
 box:
-  id: openjdk:8-jdk
+  id: openjdk:8-jdk-alpine
   ports:
     - "8080"
 
@@ -7,7 +7,7 @@ dev:
   steps:
     - script:
       name: gradle bootRun
-      code: |
+w      code: |
         ./gradlew bootRun
 
 build:
@@ -31,38 +31,6 @@ build:
         name: ls-wercker-output-dir
         code: |
             echo WERCKER_OUTPUT_DIR=$WERCKER_OUTPUT_DIR; ls -ls $WERCKER_OUTPUT_DIR
-
-push-docker:
-  steps:
-    - script:
-        name: ls-wercker-root
-        code: |
-            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
-
-    - internal/docker-push:
-        username: $DOCKERHUB_USERNAME
-        password: $DOCKERHUB_PASSWORD
-        tag: latest
-        ports: "8080"
-        cmd: ./gradlew bootRun
-        repository: rikgibson/city-db
-        registry: https://registry.hub.docker.com/v2
-
-push-docker-scratch:
-  steps:
-    - script:
-        name: ls-wercker-root
-        code: |
-            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
-
-    - internal/docker-scratch-push:
-        username: $DOCKERHUB_USERNAME
-        password: $DOCKERHUB_PASSWORD
-        tag: scratch-latest
-        ports: "8080"
-        cmd: gradlew bootRun
-        repository: rikgibson/city-db
-        registry: https://registry.hub.docker.com/v2
 
 build-image:
   steps:
