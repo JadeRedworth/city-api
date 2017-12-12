@@ -36,9 +36,20 @@ public class Hello {
 		Statement stmt = null;
 		ResultSet rs = null;
 
+		String dbHost = System.getenv("DB_HOST");
+		if (dbHost == null) {
+			dbHost = "localhost";
+		}
+		String dbPort = System.getenv("DB_PORT");
+		if (dbPort == null) {
+			dbPort = "3306";
+		}
+		String dbURL = "jdbc:mysql://" + dbHost + ":" + dbPort + "/citydb?user=test&password=welcome1&useSSL=false";
+		System.out.println("DB URL=" + dbURL);
+
 		ArrayList<String> allCities = new ArrayList<String>();
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/citydb?user=test&password=welcome1&useSSL=false");
+			conn = DriverManager.getConnection(dbURL);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select name from city");
 
