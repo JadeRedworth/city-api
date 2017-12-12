@@ -1,5 +1,5 @@
 box:
-  id: openjdk:8-jdk-alpine
+  id: openjdk:8-jdk
   ports:
     - "8080"
 
@@ -7,7 +7,7 @@ dev:
   steps:
     - script:
       name: gradle bootRun
-w      code: |
+      code: |
         ./gradlew bootRun
 
 build:
@@ -33,6 +33,9 @@ build:
             echo WERCKER_OUTPUT_DIR=$WERCKER_OUTPUT_DIR; ls -ls $WERCKER_OUTPUT_DIR
 
 build-image:
+  box:
+    id: openjdk:8-jdk-alpine
+
   steps:
     - script:
       code: |
