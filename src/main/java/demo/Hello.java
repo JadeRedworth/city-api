@@ -44,7 +44,18 @@ public class Hello {
 		if (dbPort == null) {
 			dbPort = "3306";
 		}
-		String dbURL = "jdbc:mysql://" + dbHost + ":" + dbPort + "/citydb?user=test&password=welcome1&useSSL=false";
+
+		String dbUser = System.getenv("DB_USER");
+		if (dbUser == null) {
+			dbUser = "test";
+		}
+
+		String dbPwd = System.getenv("DB_PWD");
+		if (dbPwd == null) {
+			dbPwd = "welcome1";
+		}
+
+		String dbURL = "jdbc:mysql://" + dbHost + ":" + dbPort + "/citydb?user=" + dbUser + "&password=" + dbPwd + "&useSSL=false";
 		System.out.println("DB URL=" + dbURL);
 
 		ArrayList<String> allCities = new ArrayList<String>();
