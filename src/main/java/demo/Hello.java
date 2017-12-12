@@ -42,17 +42,17 @@ public class Hello {
 		if (dbHost == null) {
 			dbHost = "localhost";
 		}
-		String dbPort = System.getenv("MYSQL_PORT");
+		String dbPort = System.getenv("MYSQL_CLUSTER_PORT");
 		if (dbPort == null) {
 			dbPort = "3306";
 		}
 
-		String dbUser = System.getenv("MYSQL_USER");
+		String dbUser = System.getenv("MYSQL_USERNAME");
 		if (dbUser == null) {
 			dbUser = "root";
 		}
 
-		String dbPwd = System.getenv("MYSQL_PWD");
+		String dbPwd = System.getenv("MYSQL_PASSWORD");
 		if (dbPwd == null) {
 			dbPwd = "welcome1";
 		}

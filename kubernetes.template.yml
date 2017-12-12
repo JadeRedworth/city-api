@@ -23,7 +23,7 @@ spec:
           - name: MYSQL_CLUSTER_NAME
             value: mysql
         env:
-          - name: MYSQL_PORT
+          - name: MYSQL_CLUSTER_PORT
             value: 3306
         env:
           - name: MYSQL_USERNAME
