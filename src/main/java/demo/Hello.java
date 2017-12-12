@@ -22,7 +22,7 @@ public class Hello {
 	}
 
 	@RequestMapping("/api/v1/city")
-	public String getCities() {
+	public String getCities() throws Exception {
 		String[] cities = this.getCitiesFromDB();
 		return Arrays.deepToString(cities);
 	}
@@ -31,26 +31,28 @@ public class Hello {
 		SpringApplication.run(Hello.class, args);
 	}
 
-	private String[] getCitiesFromDB() {
+	private String[] getCitiesFromDB() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 
-		String dbHost = System.getenv("DB_HOST");
+		SQLException sqlEx = null;
+
+		String dbHost = System.getenv("MYSQL_CLUSTER_NAME");
 		if (dbHost == null) {
 			dbHost = "localhost";
 		}
-		String dbPort = System.getenv("DB_PORT");
+		String dbPort = System.getenv("MYSQL_PORT");
 		if (dbPort == null) {
 			dbPort = "3306";
 		}
 
-		String dbUser = System.getenv("DB_USER");
+		String dbUser = System.getenv("MYSQL_USER");
 		if (dbUser == null) {
-			dbUser = "test";
+			dbUser = "root";
 		}
 
-		String dbPwd = System.getenv("DB_PWD");
+		String dbPwd = System.getenv("MYSQL_PWD");
 		if (dbPwd == null) {
 			dbPwd = "welcome1";
 		}
@@ -72,6 +74,22 @@ public class Hello {
 		}
 		catch (SQLException ex) {
 			System.out.println("Error getting JDBC connection:" + ex);
+			sqlEx = ex;
+		}
+		finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+
+		if (sqlEx != null) {
+			throw sqlEx;
 		}
 
 		return allCities.toArray(new String[0]);

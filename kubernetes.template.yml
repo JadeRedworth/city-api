@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: city-api
+  labels:
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: city-api
+  template:
+    metadata:
+      labels:
+        app: city-api
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: city-api
+        image: wcr.io/${WERCKER_APPLICATION_OWNER_NAME}/city-api:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
+        imagePullPolicy: Always
+        env:
+          - name: MYSQL_CLUSTER_NAME
+            value: mysql
+        env:
+          - name: MYSQL_PORT
+            value: 3306
+        env:
+          - name: MYSQL_USERNAME
+            value: root
+        env:
+          - name: MYSQL_PASSWORD
+            value: welcome1
+        ports:
+        - name: city-api
+          containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+        - name: wercker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: city-api
+  labels:
+    app: city-api
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  ports:
+  - port: 30001
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: city-api
+    commit: ${WERCKER_GIT_COMMIT}
+---
