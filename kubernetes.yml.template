@@ -46,9 +46,10 @@ metadata:
     app: city-api
     commit: ${WERCKER_GIT_COMMIT}
 spec:
+  type: NodePort
   ports:
-  - port: 30001
-    targetPort: 8080
+  - port: 8080
+    nodePort: 30001ss
     protocol: TCP
   selector:
     app: city-api

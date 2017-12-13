@@ -38,7 +38,7 @@ build:
 
 build-image:
   box:
-    id: openjdk:8-jdk-alpine
+    id: openjdk:8-jdk
 
   steps:
     - script:
