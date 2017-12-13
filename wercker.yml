@@ -55,6 +55,11 @@ deploy-to-cluster:
         cmd: /bin/sh
     steps:
 
+    - script:
+        name: ls-wercker-root
+        code: |
+            echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
+
     - bash-template
 
     - script:
