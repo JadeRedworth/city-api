@@ -48,3 +48,23 @@ build-image:
         cmd: java -jar /app/demo-1.0.jar
         ports: "8080"
         working-dir: /build
+
+deploy-to-cluster:
+    box:
+        id: alpine
+        cmd: /bin/sh
+    steps:
+
+    - bash-template
+
+    - script:
+        name: "Visualise Kubernetes config"
+        code: cat kubernetes.yml
+
+    - kubectl:
+        name: deploy to kubernetes
+        server: $KUBERNETES_MASTER
+        token: $KUBERNETES_TOKEN
+        insecure-skip-tls-verify: true
+        raw-global-args: --namespace=$KUBERNETES_NAMESPACE
+        command: apply -f kubernetes.yml

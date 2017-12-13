@@ -38,11 +38,11 @@ public class Hello {
 
 		SQLException sqlEx = null;
 
-		String dbHost = System.getenv("MYSQL_CLUSTER_NAME");
+		String dbHost = System.getenv("MYSQL_HOST");
 		if (dbHost == null) {
 			dbHost = "localhost";
 		}
-		String dbPort = System.getenv("MYSQL_CLUSTER_PORT");
+		String dbPort = System.getenv("MYSQL_PORT");
 		if (dbPort == null) {
 			dbPort = "3306";
 		}

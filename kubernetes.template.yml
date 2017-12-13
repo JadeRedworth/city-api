@@ -20,10 +20,10 @@ spec:
         image: wcr.io/${WERCKER_APPLICATION_OWNER_NAME}/city-api:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         imagePullPolicy: Always
         env:
-          - name: MYSQL_CLUSTER_NAME
-            value: mysql
+          - name: MYSQL_HOST
+            value: localhost
         env:
-          - name: MYSQL_CLUSTER_PORT
+          - name: MYSQL_PORT
             value: 3306
         env:
           - name: MYSQL_USERNAME
