@@ -21,7 +21,11 @@ build:
         name: ls-wercker-root
         code: |
             echo WERCKER_ROOT=$WERCKER_ROOT; ls -ls $WERCKER_ROOT
-        
+
+    - script:
+        name: preserve kubernetes.template.yml
+        code: cp kubernetes.yml.template $WERCKER_OUTPUT_DIR/kubernetes.yml.template
+
     - script:
         name: copy-output
         code: |
