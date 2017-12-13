@@ -49,7 +49,7 @@ spec:
   type: NodePort
   ports:
   - port: 8080
-    nodePort: 30001ss
+    nodePort: 30001
     protocol: TCP
   selector:
     app: city-api
