@@ -24,7 +24,7 @@ build:
 
     - script:
         name: preserve kubernetes.template.yml
-        code: cp kubernetes.yml.template $WERCKER_OUTPUT_DIR/kubernetes.yml.template
+        code: cp kubernetes.template.yml $WERCKER_OUTPUT_DIR/kubernetes.template.yml
 
     - script:
         name: copy-output
