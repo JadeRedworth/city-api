@@ -49,7 +49,7 @@ build-image:
     - internal/docker-push:
         repository: wcr.io/${WERCKER_APPLICATION_OWNER_NAME}/city-api
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT,$WERCKER_GIT_COMMIT,latest
-        cmd: java -jar /app/demo-1.0.jar
+        cmd: java -jar /app/city-api-1.0.jar
         ports: "8080"
         working-dir: /build
 

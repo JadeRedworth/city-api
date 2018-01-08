@@ -17,7 +17,7 @@ apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
 jar {
-	baseName = 'demo'
+	baseName = 'city-api'
 	version = '1.0'
 }
 sourceCompatibility = 1.8

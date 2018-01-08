@@ -1,0 +1,18 @@
+    env:
+    - name: MYSQL_CLUSTER_NAME
+      value: mysql
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: MYSQL_CLUSTER_SERVICE_NAME
+      value: mysql
+    - name: REPLICATION_GROUP_SEEDS
+      value: mysql-0:13306,mysql-1:13306,mysql-2:13306,mysql-3:13306,mysql-4:13306
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: mysql-root-password
+
