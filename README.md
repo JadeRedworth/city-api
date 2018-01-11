@@ -1,4 +1,3 @@
-
 # city-api
 
 Originally based on the [getting-started-java](https://github.com/wercker/getting-started-java) sample for [Wercker](http://www.wercker.com), this project expands upon the original by expanding it into a simple 3-tier web app - web, api & db - each running in separate containers and ultimately deployed to Oracle Container Engine.  This project is the API part of that.
